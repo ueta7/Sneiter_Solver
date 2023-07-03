@@ -9,5 +9,5 @@ Please refer to the original website for details on the algorithm.
 ## Required
 - g++
 ## How to build
-$ g++ -o ./mysolve ./mysolve.cpp -O2
+$ g++ -o ./out ./main.cpp -O2
 
