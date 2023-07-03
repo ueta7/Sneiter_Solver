@@ -38,4 +38,5 @@ terminals (Points are needed.)
 vector<pair<int,int>> ans
 Road from point.A to point.B
 */
+vector<pair<int,int>> ans = Sneiter_Solver::solve(g, ts,1);
 ~~~
