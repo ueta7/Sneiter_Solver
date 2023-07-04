@@ -6,7 +6,7 @@ This challenge includes three tracks, but this code is only suitable for track1.
 Original codes are written in RUST, So I write this in C++.
 Please refer to the original website for details on the algorithm.
 
-このコードは最小シュナイター木の厳密解を高速に解くアルゴリズムです。
+このコードは最小シュタイナー木の厳密解を高速に解くアルゴリズムです。
 これは、wata-orz氏のコード
 （https://github.com/wata-orz/steiner_tree
 ）に基づいています。
