@@ -21,7 +21,7 @@ struct edge{
 	}
 };
 
-namespace Sneiter_Solver
+namespace Steiner_Solver
 {
     using G=vector<vector<pair<int,int>>>;
     using G2=vector<map<int,int>>;
@@ -816,30 +816,30 @@ namespace Sneiter_Solver
         vector<Modify> modify{};
         int w0 = 0;
         {
-            auto[n,m,t] = Sneiter_Solver::size(g2, is_t);
-			if(Sneiter_Solver::weight0(g2,is_t,modify)){
+            auto[n,m,t] = Steiner_Solver::size(g2, is_t);
+			if(Steiner_Solver::weight0(g2,is_t,modify)){
 				auto [n2, m2, t2] = size(g2, is_t);
             }
         }
         while (1) {
-            auto [n, m, t] = Sneiter_Solver::size(g2, is_t);
+            auto [n, m, t] = Steiner_Solver::size(g2, is_t);
             if (t <= 1) {
                 break;
             }
-            if (Sneiter_Solver::light(g2, is_t, modify, w0)) {
-                auto [n2, m2, t2] = Sneiter_Solver::size(g2, is_t);
+            if (Steiner_Solver::light(g2, is_t, modify, w0)) {
+                auto [n2, m2, t2] = Steiner_Solver::size(g2, is_t);
                 continue;
             }
-            if (Sneiter_Solver::sd(g2, is_t)) {
-                auto [n2, m2, t2] = Sneiter_Solver::size(g2, is_t);
+            if (Steiner_Solver::sd(g2, is_t)) {
+                auto [n2, m2, t2] = Steiner_Solver::size(g2, is_t);
                 continue;
             }
-            if (Sneiter_Solver::nsc(g2, is_t, modify, w0)) {
-                auto [n2, m2, t2] = Sneiter_Solver::size(g2, is_t);
+            if (Steiner_Solver::nsc(g2, is_t, modify, w0)) {
+                auto [n2, m2, t2] = Steiner_Solver::size(g2, is_t);
                 continue;
             }
-            if (Sneiter_Solver::deg3(g2, is_t)) {
-                auto [n2, m2, t2] = Sneiter_Solver::size(g2, is_t);
+            if (Steiner_Solver::deg3(g2, is_t)) {
+                auto [n2, m2, t2] = Steiner_Solver::size(g2, is_t);
                 continue;
             }
             break;
@@ -1325,10 +1325,10 @@ namespace Sneiter_Solver
     };
     vector<P> solve(vector<vector<P>>& g,V& ts,bool valid=false){
         auto stime =chrono::system_clock::now();
-        Sneiter_Solver::Reduction_RESULT reduced = Sneiter_Solver::reduce(g, ts);
+        Steiner_Solver::Reduction_RESULT reduced = Steiner_Solver::reduce(g, ts);
         int total_edges = 0;for (const auto& a : reduced.g) {total_edges += a.size();}
-        pair<int,vector<P>> result = Sneiter_Solver::solver(reduced.g, reduced.ts);
-        pair<int,vector<P>> ans = Sneiter_Solver::restore(reduced,result);
+        pair<int,vector<P>> result = Steiner_Solver::solver(reduced.g, reduced.ts);
+        pair<int,vector<P>> ans = Steiner_Solver::restore(reduced,result);
         if(valid){
             if (!validate(g, ts, ans.first, ans.second)){
                 cerr << "value = WA" << endl;
@@ -1412,7 +1412,7 @@ int main()
     auto input = read_input();
     auto g = input.first;
     auto ts = input.second;
-    vector<pair<int,int>> ans = Sneiter_Solver::solve(g, ts,1);
+    vector<pair<int,int>> ans = Steiner_Solver::solve(g, ts,1);
     for (const auto& edge : ans) {
         std::cout << edge.first + 1 << " " << edge.second + 1 << std::endl;
     }
